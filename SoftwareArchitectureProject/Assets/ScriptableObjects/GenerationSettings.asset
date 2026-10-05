@@ -17,6 +17,13 @@ MonoBehaviour:
     y: 0
     width: 100
     height: 50
-  minSize: 0
-  divisionRange: 0
-  removeCount: 0
+  minSize: 20
+  divisionRange: 5
+  removeCount: 10
+  seed: 886264904
+  useRandomSeed: 1
+  EnabledGenerators: 0101
+  algorithm: 1
+  delayMode: 1
+  manualKey: 32
+  stepwiseDelay: 0.1

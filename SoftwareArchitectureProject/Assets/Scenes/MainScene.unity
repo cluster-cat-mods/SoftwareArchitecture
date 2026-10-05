@@ -441,26 +441,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1147866112}
-  - component: {fileID: 1147866111}
+  - component: {fileID: 1147866113}
+  - component: {fileID: 1147866116}
+  - component: {fileID: 1147866115}
+  - component: {fileID: 1147866114}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Dungeon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1147866111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147866110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f8ecb69aa99081458fcc3ef9056e937, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoomGenerator
 --- !u!4 &1147866112
 Transform:
   m_ObjectHideFlags: 0
@@ -476,6 +467,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1147866113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147866110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8beab53461d2a44db433e34b9f83261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Dungeon
+  settings: {fileID: 11400000, guid: 481cf692fd7bb814d8f05980da1a2a93, type: 2}
+  roomList:
+  - x: 0
+    y: 0
+    width: 100
+    height: 50
+  wallList: []
+  doorList: []
+--- !u!114 &1147866114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147866110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f8ecb69aa99081458fcc3ef9056e937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomGenerator
+  nextColor: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
+  selectedColor: {r: 0, g: 1, b: 1, a: 1}
+  otherSelectedColor: {r: 1, g: 0, b: 1, a: 1}
+  doneColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &1147866115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147866110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796a6682c4311424b9d1040f4ebd8c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeedGenerator
+  nextColor: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
+  selectedColor: {r: 0, g: 1, b: 1, a: 1}
+  otherSelectedColor: {r: 1, g: 0, b: 1, a: 1}
+  doneColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &1147866116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147866110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703e685a75532aa4c9070116b5994b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonDrawer
+  drawBounds: 1
+  drawRooms: 1
+  drawWalls: 1
+  drawDoors: 1
+  drawGraph: 1
+  boundsColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  roomColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  wallColor: {r: 0, g: 0, b: 1, a: 1}
+  doorColor: {r: 0, g: 1, b: 1, a: 1}
+  graphColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1529644991
 GameObject:
   m_ObjectHideFlags: 0
