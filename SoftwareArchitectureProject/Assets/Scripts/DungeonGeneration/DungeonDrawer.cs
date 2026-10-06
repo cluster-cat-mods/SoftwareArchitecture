@@ -6,15 +6,12 @@ using NaughtyAttributes;
 public class DungeonDrawer : MonoBehaviour
 {
     [SerializeField] private bool drawBounds = true;
-    [SerializeField] private bool drawRooms = true;
-    [SerializeField] private bool drawWalls = true;
-    [SerializeField] private bool drawDoors = true;
-    [SerializeField] private bool drawGraph = true;
-    
     [SerializeField, ShowIf("drawBounds")] private Color boundsColor = Color.yellow;
+    [SerializeField] private bool drawRooms = true;
     [SerializeField, ShowIf("drawRooms")] private Color roomColor = Color.yellow;
-    [SerializeField, ShowIf("drawWalls")] private Color wallColor = Color.blue;
+    [SerializeField] private bool drawDoors = true;
     [SerializeField, ShowIf("drawDoors")] private Color doorColor = Color.cyan;
+    [SerializeField] private bool drawGraph = true;
     [SerializeField, ShowIf("drawGraph")] private Color graphColor = Color.white;
     
     private Dungeon _dungeon;
@@ -47,10 +44,6 @@ public class DungeonDrawer : MonoBehaviour
         {
             foreach (var room in _dungeon.roomList) AlgorithmsUtils.DebugRectInt(room, roomColor);
             
-        }
-        if (drawWalls) foreach (var wall in _dungeon.wallList)
-        {
-            AlgorithmsUtils.DebugRectInt(wall, wallColor);
         }
         if (drawDoors) foreach (var door in _dungeon.doorList)
         {

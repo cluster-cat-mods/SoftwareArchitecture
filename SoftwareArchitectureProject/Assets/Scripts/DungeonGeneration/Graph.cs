@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class Graph<T>
 {
     private Dictionary<T, List<T>> adjacencyList;

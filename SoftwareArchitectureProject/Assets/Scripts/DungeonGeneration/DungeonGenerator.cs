@@ -75,8 +75,9 @@ public abstract class DungeonGenerator : MonoBehaviour
     private void ClearDungeon()
     {
         dungeon.roomList = new();
-        dungeon.wallList = new();
         dungeon.doorList = new();
+        dungeon.graph = new();
+        dungeon.tileMap = new();
     }
     
     
