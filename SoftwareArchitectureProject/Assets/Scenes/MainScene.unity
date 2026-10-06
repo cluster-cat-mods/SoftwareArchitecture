@@ -446,6 +446,8 @@ GameObject:
   - component: {fileID: 1147866114}
   - component: {fileID: 1147866117}
   - component: {fileID: 1147866118}
+  - component: {fileID: 1147866119}
+  - component: {fileID: 1147866120}
   - component: {fileID: 1147866116}
   m_Layer: 0
   m_Name: Dungeon
@@ -578,6 +580,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1d870ca9fa4c59bcc02eb05264f3d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GraphGenerator
+  isGenerationStartPoint: 0
+  nextGenerator: {fileID: 1147866119}
+  debugDraw: 1
+  nextColor: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
+  selectedColor: {r: 0, g: 1, b: 1, a: 1}
+  otherSelectedColor: {r: 1, g: 0, b: 1, a: 1}
+  doneColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &1147866119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147866110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b80c852b9f43efbd599f86ff723168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnusedRoomDeletor
+  isGenerationStartPoint: 0
+  nextGenerator: {fileID: 1147866120}
+  debugDraw: 1
+  nextColor: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
+  selectedColor: {r: 0, g: 1, b: 1, a: 1}
+  otherSelectedColor: {r: 1, g: 0, b: 1, a: 1}
+  doneColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &1147866120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147866110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33530a8662e543828beb54eb9dcdc123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConnectivityChecker
   isGenerationStartPoint: 0
   nextGenerator: {fileID: 0}
   debugDraw: 1

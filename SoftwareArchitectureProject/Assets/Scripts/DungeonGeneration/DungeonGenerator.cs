@@ -88,8 +88,27 @@ public abstract class DungeonGenerator : MonoBehaviour
         dungeon.graph = new();
         dungeon.tileMap = new();
     }
-    
-    
+
+    protected bool CheckConnectivity(out HashSet<RectInt> visitedP)
+    {
+        bool isConnected = false;
+        HashSet<RectInt> visited = new();
+        switch (dungeon.settings.algorithm)
+        {
+            case GenerationSettings.Algorithm.Bfs:
+                isConnected = dungeon.graph.CheckConnectivityBFS(out visited);
+                break;
+            case GenerationSettings.Algorithm.Dfs:
+                isConnected = dungeon.graph.CheckConnectivityDFS(out  visited);
+                break;
+            case GenerationSettings.Algorithm.DfsRecursive:
+                isConnected = dungeon.graph.CheckConnectivityDFSRecursive(out visited);
+                break;
+        }
+        
+        visitedP = visited;
+        return isConnected;
+    }
     
     protected IEnumerator Wait() //O(1)
     {

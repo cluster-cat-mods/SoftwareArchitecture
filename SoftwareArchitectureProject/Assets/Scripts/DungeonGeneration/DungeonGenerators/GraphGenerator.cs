@@ -57,10 +57,8 @@ public class GraphGenerator : DungeonGenerator
             i--;
 
         }
-        currentRoom = new();
-        otherCurrentRoom = new();
 
-        Debug.Log("Generated " + dungeon.doorList.Count + " doors");
+        Debug.Log("Generated " + dungeon.doorList.Count + " doors and created a graph with: " + dungeon.graph.GetNodeCount() + " nodes");
     }
     
     private RectInt GenerateDoor(RectInt overlapP) //O(1)

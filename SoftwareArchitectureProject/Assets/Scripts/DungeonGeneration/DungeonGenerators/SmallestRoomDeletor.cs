@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomDeletor : DungeonGenerator
+public class SmallestRoomDeletor : DungeonGenerator
 {
     protected override IEnumerator Generate()
     {

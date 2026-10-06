@@ -19,9 +19,9 @@ MonoBehaviour:
     height: 500
   minSize: 20
   divisionRange: 5
-  removeCount: 25
+  removeCount: 175
   useRandomSeed: 1
-  seed: 2023492744
+  seed: -254027466
   algorithm: 1
   delayMode: 0
   manualKey: 32
