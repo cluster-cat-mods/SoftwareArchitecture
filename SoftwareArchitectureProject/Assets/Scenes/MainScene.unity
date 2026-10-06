@@ -488,6 +488,7 @@ MonoBehaviour:
     width: 100
     height: 50
   doorList: []
+  finishedGenerating: 0
 --- !u!114 &1147866114
 MonoBehaviour:
   m_ObjectHideFlags: 0

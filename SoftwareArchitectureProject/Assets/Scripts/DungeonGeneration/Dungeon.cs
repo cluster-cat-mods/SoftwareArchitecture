@@ -14,6 +14,8 @@ public class Dungeon : MonoBehaviour
     [HideInInspector] public Graph<RectInt> graph  = new();
     [HideInInspector] public TileMap tileMap = new();
     
+    [HideInInspector] public bool finishedGenerating = false;
+    
     private NavMeshSurface _surface;
 }
 

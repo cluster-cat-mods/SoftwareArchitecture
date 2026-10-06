@@ -17,9 +17,16 @@ public abstract class DungeonGenerator : MonoBehaviour
     protected RectInt currentRoom = new();
     protected RectInt otherCurrentRoom = new();
     protected RectInt[] lastArray = new RectInt[2];
+
+    public event Action onDungeonGenerationFinished;
     
 
 #if  UNITY_EDITOR
+    [Button, ShowIf("isGenerationStartPoint")]
+    public void Regenerate()
+    {
+        Start();
+    }
     [SerializeField] protected bool debugDraw = true;
     [SerializeField, ShowIf("debugDraw")] protected Color nextColor = Color.darkGray;
     [SerializeField, ShowIf("debugDraw")] protected Color selectedColor = Color.cyan;
@@ -56,6 +63,8 @@ public abstract class DungeonGenerator : MonoBehaviour
         }
         else
         {
+            dungeon.finishedGenerating = true;
+            onDungeonGenerationFinished?.Invoke();
             Debug.Log("Finished generating dungeon");
         }
     }
