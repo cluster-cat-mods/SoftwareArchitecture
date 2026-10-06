@@ -7,9 +7,9 @@ using Random = UnityEngine.Random;
 
 public class RoomGenerator : DungeonGenerator
 {
-    protected override void StartGenerator(int i)
+    protected override IEnumerator Generate()
     {
-        if (i == 1) StartCoroutine(GenerateRooms());
+        yield return GenerateRooms();
     }
 
     private IEnumerator GenerateRooms()
@@ -20,10 +20,7 @@ public class RoomGenerator : DungeonGenerator
             {
                 currentRoom = room;
 
-                if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant)
-                {
-                    yield return Wait();
-                }
+                if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant) yield return Wait();
                 
                 if (room.width / 2 < dungeon.settings.minSize && room.height / 2 < dungeon.settings.minSize)
                 {
@@ -33,29 +30,19 @@ public class RoomGenerator : DungeonGenerator
                 {
                     lastArray = SplitRoom(room);
 
-                    if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant)
-                    {
-                        yield return Wait();
-                    }
+                    if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant) yield return Wait();
 
                     nextList.Add(lastArray[0]);
                     nextList.Add(lastArray[1]);
                 }
 
-                if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant)
-                {
-                    yield return Wait();
-                }
+                if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant) yield return Wait();
             }
             dungeon.roomList = nextList;
             nextList = new();
         }
-
-        dungeon.roomList = new List<RectInt>(doneList);
         Debug.Log("Generated " + doneList.Count + " rooms");
-        Clear();
         
-        InvokeOnGeneratorFinished();
     }
     
     private RectInt[] SplitRoom(RectInt roomToSplitP) //O(1)

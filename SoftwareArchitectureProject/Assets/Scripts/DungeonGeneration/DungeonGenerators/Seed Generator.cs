@@ -1,13 +1,16 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 
 public class SeedGenerator : DungeonGenerator
 {
-    protected override void StartGenerator(int i)
+    protected override IEnumerator Generate()
     {
-        if (i == 0) SetSeed();
+        SetSeed();
+        doneList = dungeon.roomList;
+        yield return null;
     }
     
     private void SetSeed() //O(1)
@@ -23,8 +26,6 @@ public class SeedGenerator : DungeonGenerator
         }
 
         Random.InitState(dungeon.settings.seed);
-
-        InvokeOnGeneratorFinished();
     }
     
     

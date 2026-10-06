@@ -11,13 +11,7 @@ public class GenerationSettings : ScriptableObject
     [Foldout("Dungeon Settings"), Min(0)] public int removeCount = 10;
     [Space] [Foldout("Dungeon Settings")] public int seed;
     [Foldout("Dungeon Settings")] public bool useRandomSeed = true;
-
-    [Tooltip("SeedGenerator, RoomGenerator")]
-    [Foldout("Generation Settings")] public bool[] EnabledGenerators =
-    {
-        true,
-        true,
-    };
+    
     public enum Algorithm
     {
         Bfs,
