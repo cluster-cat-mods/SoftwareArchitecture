@@ -448,6 +448,7 @@ GameObject:
   - component: {fileID: 1147866118}
   - component: {fileID: 1147866119}
   - component: {fileID: 1147866120}
+  - component: {fileID: 1147866121}
   - component: {fileID: 1147866116}
   m_Layer: 0
   m_Name: Dungeon
@@ -549,6 +550,9 @@ MonoBehaviour:
   doorColor: {r: 0, g: 1, b: 1, a: 1}
   drawGraph: 1
   graphColor: {r: 1, g: 1, b: 1, a: 1}
+  drawTileMap: 0
+  tileColor0: {r: 1, g: 0, b: 0, a: 1}
+  tileColor1: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &1147866117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,6 +622,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33530a8662e543828beb54eb9dcdc123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConnectivityChecker
+  isGenerationStartPoint: 0
+  nextGenerator: {fileID: 1147866121}
+  debugDraw: 1
+  nextColor: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
+  selectedColor: {r: 0, g: 1, b: 1, a: 1}
+  otherSelectedColor: {r: 1, g: 0, b: 1, a: 1}
+  doneColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &1147866121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147866110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea97089683474e428d2a50c3f1a392df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileMapGenerator
   isGenerationStartPoint: 0
   nextGenerator: {fileID: 0}
   debugDraw: 1

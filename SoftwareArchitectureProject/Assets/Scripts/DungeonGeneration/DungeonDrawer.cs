@@ -13,15 +13,16 @@ public class DungeonDrawer : MonoBehaviour
     [SerializeField, ShowIf("drawDoors")] private Color doorColor = Color.cyan;
     [SerializeField] private bool drawGraph = true;
     [SerializeField, ShowIf("drawGraph")] private Color graphColor = Color.white;
+    [SerializeField] private bool drawTileMap = true;
+    [SerializeField, ShowIf("drawTileMap")] private Color tileColor0 = Color.red;
+    [SerializeField, ShowIf("drawTileMap")] private Color tileColor1 = Color.green;
     
     private Dungeon _dungeon;
-    private DungeonGenerator[] _generators;
     private RectInt _minSizeBounds;
 
     private void Start()
     {
         _dungeon = GetComponent<Dungeon>();
-        _generators = GetComponents<DungeonGenerator>();
     }
 
     private void Update()
@@ -62,6 +63,24 @@ public class DungeonDrawer : MonoBehaviour
         
         
     }
-    
-    
+
+    private void OnDrawGizmos()
+    {
+        if (!drawTileMap || _dungeon == null) return;
+        for (int r = 0; r < _dungeon.tileMap.GetLength(0); r++)
+        {
+            for (int c = 0; c < _dungeon.tileMap.GetLength(1); c++)
+            {
+                if (_dungeon.tileMap.GetTile(r, c) == 1)
+                {
+                    Gizmos.color = tileColor1;
+                }
+                else
+                {
+                    Gizmos.color = tileColor0;
+                }
+                Gizmos.DrawCube(new Vector3(c,-1,r), new Vector3(0.8f,0.8f,0.8f));
+            }
+        }
+    }
 }

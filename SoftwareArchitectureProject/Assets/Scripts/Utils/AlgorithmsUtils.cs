@@ -39,7 +39,7 @@ public class AlgorithmsUtils
         }
     }
     
-    public static void FillRectangleOutline(int[,] array, RectInt area, int value) 
+    public static void FillRectangleOutline(TileMap tileMap, RectInt area, int value) 
     { 
         
         int endX = area.x + area.width - 1;
@@ -48,15 +48,15 @@ public class AlgorithmsUtils
         // Draw top and bottom borders
         for (int x = area.x; x <= endX; x++)
         {
-            array[area.y, x] = value;
-            array[endY, x] = value;
+            tileMap.SetTile(area.y, x, value);
+            tileMap.SetTile(endY, x, value);
         }
 
         // Draw left and right borders
         for (int y = area.y + 1; y < endY; y++)
         {
-            array[y, area.x] = value;
-            array[y, endX] = value;
+            tileMap.SetTile(y, area.x, value);
+            tileMap.SetTile(y, endX, value);
         }
     }
 

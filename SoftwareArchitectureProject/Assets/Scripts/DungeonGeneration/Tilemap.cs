@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public class TileMap
 {
-    public int[,] Map {get;}
+    private int[,] Map {get;}
 
     public TileMap()
     {
@@ -27,6 +27,16 @@ public class TileMap
     public int GetValue(int row, int col)
     {
         return Map[row, col] | Map[row, col + 1] << 1 | Map[row + 1, col + 1] << 2 | Map[row + 1, col] << 3;
+    }
+
+    public int[,] GetTileMap()
+    {
+        return Map;
+    }
+
+    public int GetLength(int axis)
+    {
+        return Map.GetLength(axis);
     }
 
 }
