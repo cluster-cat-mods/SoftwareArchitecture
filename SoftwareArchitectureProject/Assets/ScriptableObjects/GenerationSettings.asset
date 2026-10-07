@@ -17,11 +17,11 @@ MonoBehaviour:
     y: 0
     width: 1000
     height: 500
-  minSize: 20
+  minSize: 35
   divisionRange: 5
-  removeCount: 175
+  removeFraction: 0.2
   useRandomSeed: 1
-  seed: -254027466
+  seed: 2049713763
   algorithm: 1
   delayMode: 0
   manualKey: 32
