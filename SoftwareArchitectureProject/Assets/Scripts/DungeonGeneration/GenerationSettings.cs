@@ -9,7 +9,7 @@ public class GenerationSettings : ScriptableObject
     [Foldout("Dungeon Settings")] public RectInt roomBounds = new RectInt(0, 0, 100, 50);
     [Foldout("Dungeon Settings"), Min(0)] public int minSize = 10;
     [Foldout("Dungeon Settings"), Min(2)] public float divisionRange = 3;
-    [Foldout("Dungeon Settings"), Min(0)] public int removeCount = 10;
+    [Foldout("Dungeon Settings"), Range(0, 1)] public float removeFraction = 0.2f;
     
     [Foldout("Generation Settings")] public bool useRandomSeed = true;
     [Foldout("Generation Settings"), DisableIf("useRandomSeed")] public int seed;

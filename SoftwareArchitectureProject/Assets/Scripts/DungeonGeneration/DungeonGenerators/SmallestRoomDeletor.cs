@@ -12,7 +12,7 @@ public class SmallestRoomDeletor : DungeonGenerator
     private IEnumerator RemoveRooms() //O(n)
     {
         nextList = SortList(dungeon.roomList);
-        doneList = new List<RectInt>(nextList.Count - dungeon.settings.removeCount);
+        doneList = new List<RectInt>(Mathf.RoundToInt(nextList.Count * (1 - dungeon.settings.removeFraction)));
         for (int i = 0; i < doneList.Capacity; i++)
         {
             currentRoom = nextList[i];
@@ -22,7 +22,7 @@ public class SmallestRoomDeletor : DungeonGenerator
             doneList.Add(currentRoom);
         }
 
-        Debug.Log("Removed " + dungeon.settings.removeCount + " rooms");
+        Debug.Log("Removed " + dungeon.settings.removeFraction + " rooms");
     }
     
     private List<RectInt> SortList(List<RectInt> listP) //O(n*(n-1)) -> O(n^2)
