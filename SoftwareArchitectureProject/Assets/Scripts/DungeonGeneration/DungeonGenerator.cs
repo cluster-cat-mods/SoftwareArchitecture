@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.AdaptivePerformance;
 
 [RequireComponent(typeof(Dungeon))]
 public abstract class DungeonGenerator : MonoBehaviour
@@ -87,6 +88,11 @@ public abstract class DungeonGenerator : MonoBehaviour
         dungeon.doorList = new();
         dungeon.graph = new();
         dungeon.tileMap = new();
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
     }
 
     protected bool CheckConnectivity(out HashSet<RectInt> visitedP)

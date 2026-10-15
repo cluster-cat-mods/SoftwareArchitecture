@@ -26,7 +26,7 @@ public class TileMap
     
     public int GetValue(int row, int col)
     {
-        return Map[row, col] | Map[row, col + 1] << 1 | Map[row + 1, col + 1] << 2 | Map[row + 1, col] << 3;
+        return Map[row, col] | Map[row + 1, col] << 1 | Map[row + 1, col + 1] << 2 | Map[row, col + 1] << 3;
     }
 
     public int[,] GetTileMap()

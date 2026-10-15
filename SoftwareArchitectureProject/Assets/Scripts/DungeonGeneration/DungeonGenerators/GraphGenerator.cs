@@ -68,12 +68,12 @@ public class GraphGenerator : DungeonGenerator
         RectInt door = overlapP;
         if (overlapP.width > overlapP.height)
         {
-            door.width = overlapP.height;
+            door.width = 1;
             door.x += Random.Range(door.width * 3, overlapP.width - door.width * 3) - door.width / 2;
         }
         else
         {
-            door.height = overlapP.width;
+            door.height = 1;
             door.y += Random.Range(door.height * 3, overlapP.height - door.height * 3) - door.height / 2;
         }
         return door;

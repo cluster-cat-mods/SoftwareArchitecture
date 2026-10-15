@@ -19,7 +19,9 @@ public class GenerationSettings : ScriptableObject
         Dfs,
         DfsRecursive
     }
-    [Foldout("Generation Settings")]public Algorithm algorithm = Algorithm.Dfs;
+    [Foldout("Generation Settings")] public Algorithm algorithm = Algorithm.Dfs;
+
+    [Foldout("Building Settings")] public GameObject[] dungeonPrefabs = new GameObject[5];
 
     public enum DelayMode
     {

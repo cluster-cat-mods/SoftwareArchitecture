@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Dungeon : MonoBehaviour
 {
-    public GenerationSettings settings;
+    [Expandable] public GenerationSettings settings;
     [HideInInspector] public List<RectInt> roomList = new();
     [HideInInspector] public List<RectInt> doorList = new();
     
