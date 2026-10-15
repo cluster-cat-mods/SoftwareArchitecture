@@ -21,14 +21,14 @@ MonoBehaviour:
   divisionRange: 5
   removeFraction: 0.3
   useRandomSeed: 1
-  seed: 1055632773
+  seed: -638462074
   algorithm: 1
   dungeonPrefabs:
   - {fileID: 6870425188746005989, guid: c2643feb864243e4f8f1f2fcc7ebe7a1, type: 3}
   - {fileID: 7703601947146298794, guid: c00c20cbb7714c241b097100a9d2548b, type: 3}
   - {fileID: 6428807840566584125, guid: c9deb566531440e4abd9d1b24030b03c, type: 3}
   - {fileID: 6115889867821387716, guid: 8198013cab109044e9d1717bd1e9f207, type: 3}
-  - {fileID: 4366971397730705710, guid: a015e131167b26f46a3fe8d958c7e976, type: 3}
+  - {fileID: 0}
   delayMode: 0
   manualKey: 32
   stepwiseDelay: 0

@@ -19,7 +19,7 @@ public abstract class DungeonGenerator : MonoBehaviour
     protected RectInt otherCurrentRoom = new();
     protected RectInt[] lastArray = new RectInt[2];
 
-    public event Action onDungeonGenerationFinished;
+    public static event Action<Dungeon> OnDungeonGenerationFinished;
     
 
 #if  UNITY_EDITOR
@@ -65,7 +65,7 @@ public abstract class DungeonGenerator : MonoBehaviour
         else
         {
             dungeon.finishedGenerating = true;
-            onDungeonGenerationFinished?.Invoke();
+            OnDungeonGenerationFinished?.Invoke(dungeon);
             Debug.Log("Finished generating dungeon");
         }
     }
