@@ -32,7 +32,7 @@ public class DungeonBuilder : DungeonGenerator
         (1, 0),
         (0, 0),
         (3, 0),
-        (1, 0)
+        (0, 0)
     };
     
     private (int, int)[] _doorValsH =
