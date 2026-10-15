@@ -10,5 +10,6 @@ public class ControllsEnabler : SetupManager
         {
             c.enabled = true;
         }
+        Debug.Log("Enabled " + components.Length + " components");
     }
 }

@@ -16,6 +16,6 @@ public class Dungeon : MonoBehaviour
     
     [HideInInspector] public bool finishedGenerating = false;
     
-    private NavMeshSurface _surface;
+   
 }
 

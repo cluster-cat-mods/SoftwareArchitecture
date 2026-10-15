@@ -8,14 +8,15 @@ public class PlayerSpawner : SetupManager
 
     protected override void Setup(Dungeon dungeon)
     {
-        if (player == null) throw new NullReferenceException("Player prefab is null");
+        if (player == null) throw new NullReferenceException("Player object is null");
         SpawnPlayer(dungeon.graph);
-        Debug.Log("Spawned player");
     }
 
     private void SpawnPlayer(Graph<RectInt> graph) //O(1)
     {
-        Instantiate(player, new Vector3(graph.GetNodes()[1].center.x, transform.position.y + 1, graph.GetNodes()[1].center.y), Quaternion.identity);
+        player.transform.position = new Vector3(graph.GetNodes()[1].center.x, transform.position.y + 1, graph.GetNodes()[1].center.y);
+        player.gameObject.SetActive(true);
+        Debug.Log("Spawned player");
     }
 }
 
