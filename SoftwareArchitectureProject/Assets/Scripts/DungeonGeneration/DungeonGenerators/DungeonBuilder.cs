@@ -67,13 +67,13 @@ namespace DungeonGeneration.DungeonGenerators
         
             Coroutine[] coroutines = new Coroutine[dungeon.roomList.Count];
     
-            Debug.Log("starting room coroutines");
+            Debug.Log("starting room building coroutines");
             for (int i = 0; i < coroutines.Length; i++)
             {
                 coroutines[i] = StartCoroutine(FillRoom(dungeon.roomList[i]));
             }
 
-            Debug.Log("yielding room coroutines");
+            Debug.Log("yielding room building coroutines");
             foreach (Coroutine coroutine in coroutines)
             {
                 yield return coroutine;
@@ -81,13 +81,13 @@ namespace DungeonGeneration.DungeonGenerators
         
             coroutines = new Coroutine[dungeon.doorList.Count];
         
-            Debug.Log("starting door coroutines");
+            Debug.Log("starting door building coroutines");
             for (int i = 0; i < coroutines.Length; i++)
             {
                 coroutines[i] = StartCoroutine(FillDoor(dungeon.doorList[i]));
             }
         
-            Debug.Log("yielding door coroutines");
+            Debug.Log("yielding door building coroutines");
             foreach (Coroutine coroutine in coroutines)
             {
                 yield return coroutine;

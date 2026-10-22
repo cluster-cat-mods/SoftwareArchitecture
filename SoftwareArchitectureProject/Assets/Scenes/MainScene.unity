@@ -2010,6 +2010,7 @@ GameObject:
   - component: {fileID: 1147866121}
   - component: {fileID: 1147866122}
   - component: {fileID: 1147866123}
+  - component: {fileID: 1147866125}
   - component: {fileID: 1147866116}
   - component: {fileID: 1147866124}
   m_Layer: 0
@@ -2242,7 +2243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NavMeshGenerator
   isGenerationStartPoint: 0
-  nextGenerator: {fileID: 0}
+  nextGenerator: {fileID: 1147866125}
   debugDraw: 1
   nextColor: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
   selectedColor: {r: 0, g: 1, b: 1, a: 1}
@@ -2280,6 +2281,25 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!114 &1147866125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147866110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91fc91034631d264b8d927ac176f2058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonGeneration.DungeonGenerators.ObjectSpawner
+  isGenerationStartPoint: 0
+  nextGenerator: {fileID: 0}
+  debugDraw: 1
+  nextColor: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
+  selectedColor: {r: 0, g: 1, b: 1, a: 1}
+  otherSelectedColor: {r: 1, g: 0, b: 1, a: 1}
+  doneColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &1152889195
 GameObject:
   m_ObjectHideFlags: 0

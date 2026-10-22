@@ -19,7 +19,7 @@ MonoBehaviour:
     height: 150
   minSize: 20
   divisionRange: 5
-  removeFraction: 0.3
+  fractionToRemove: 0.2
   useRandomSeed: 1
   seed: -638462074
   algorithm: 1
@@ -29,6 +29,8 @@ MonoBehaviour:
   - {fileID: 6428807840566584125, guid: c9deb566531440e4abd9d1b24030b03c, type: 3}
   - {fileID: 6115889867821387716, guid: 8198013cab109044e9d1717bd1e9f207, type: 3}
   - {fileID: 0}
+  roomObjectPatterns:
+  - {fileID: 11400000, guid: 3387ad1be94c6354995f91ac963fdca9, type: 2}
   delayMode: 0
   manualKey: 32
   stepwiseDelay: 0

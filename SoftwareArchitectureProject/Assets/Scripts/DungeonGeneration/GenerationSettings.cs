@@ -23,6 +23,7 @@ namespace DungeonGeneration
         [SerializeField, Foldout("Generation Settings")] private AlgorithmEnum algorithm = AlgorithmEnum.Dfs;
 
         [SerializeField, Foldout("Building Settings")] private GameObject[] dungeonPrefabs = new GameObject[5];
+        [SerializeField, Foldout("Building Settings")] private RoomObjectPattern[] roomObjectPatterns = new RoomObjectPattern[1];
 
         public enum DelayModeEnum
         {
@@ -43,6 +44,7 @@ namespace DungeonGeneration
         public AlgorithmEnum Algorithm => algorithm;
         
         public GameObject[] DungeonPrefabs => dungeonPrefabs;
+        public  RoomObjectPattern[] RoomObjectPatterns => roomObjectPatterns;
         
         public DelayModeEnum DelayMode => delayMode;
         public KeyCode ManualKey => manualKey;
