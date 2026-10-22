@@ -17,11 +17,7 @@ namespace DungeonGeneration.DungeonGenerators
             bool isConnected = CheckConnectivity(out visited);
             Debug.Log(isConnected ? "Graph already fully connected" : "Graph not yet fully connected");
         
-            if (isConnected)
-            {
-                doneList = dungeon.roomList;
-                yield break;
-            }
+            if (isConnected) yield break;
 
             foreach (RectInt room in dungeon.roomList)
             {
@@ -34,7 +30,7 @@ namespace DungeonGeneration.DungeonGenerators
                     dungeon.graph.RemoveNode(room);
                 }
             
-                if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant) yield return Wait();
+                if (dungeon.settings.DelayMode != GenerationSettings.DelayModeEnum.Instant) yield return Wait();
             
             }
         
@@ -49,7 +45,7 @@ namespace DungeonGeneration.DungeonGenerators
                     i--;
                 }
             
-                if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant) yield return Wait();
+                if (dungeon.settings.DelayMode != GenerationSettings.DelayModeEnum.Instant) yield return Wait();
             
             }
         

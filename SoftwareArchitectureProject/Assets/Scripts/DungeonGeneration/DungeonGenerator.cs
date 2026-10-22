@@ -46,7 +46,7 @@ namespace DungeonGeneration
             if (isGenerationStartPoint)
             {
                 ClearDungeon();
-                dungeon.roomList.Add(dungeon.settings.roomBounds);
+                dungeon.roomList.Add(dungeon.settings.RoomBounds);
                 StartCoroutine(RunGenerator());
                 Debug.Log("Started dungeon generation " + this);
             }
@@ -55,7 +55,7 @@ namespace DungeonGeneration
         private IEnumerator RunGenerator()
         {
             yield return Generate();
-            dungeon.roomList = new List<RectInt>(doneList);
+            if (doneList.Count != 0) dungeon.roomList = new List<RectInt>(doneList);
             ClearGenerator();
         
             if (nextGenerator != null)
@@ -100,15 +100,15 @@ namespace DungeonGeneration
         {
             bool isConnected = false;
             HashSet<RectInt> visited = new();
-            switch (dungeon.settings.algorithm)
+            switch (dungeon.settings.Algorithm)
             {
-                case GenerationSettings.Algorithm.Bfs:
+                case GenerationSettings.AlgorithmEnum.Bfs:
                     isConnected = dungeon.graph.CheckConnectivityBFS(out visited);
                     break;
-                case GenerationSettings.Algorithm.Dfs:
+                case GenerationSettings.AlgorithmEnum.Dfs:
                     isConnected = dungeon.graph.CheckConnectivityDFS(out  visited);
                     break;
-                case GenerationSettings.Algorithm.DfsRecursive:
+                case GenerationSettings.AlgorithmEnum.DfsRecursive:
                     isConnected = dungeon.graph.CheckConnectivityDFSRecursive(out visited);
                     break;
             }
@@ -119,14 +119,14 @@ namespace DungeonGeneration
     
         protected IEnumerator Wait() //O(1)
         {
-            switch (dungeon.settings.delayMode)
+            switch (dungeon.settings.DelayMode)
             {
-                case GenerationSettings.DelayMode.Instant:
+                case GenerationSettings.DelayModeEnum.Instant:
                     break;
-                case GenerationSettings.DelayMode.Stepwise:
-                    yield return new WaitForSeconds(dungeon.settings.stepwiseDelay);
+                case GenerationSettings.DelayModeEnum.Stepwise:
+                    yield return new WaitForSeconds(dungeon.settings.StepwiseDelay);
                     break;
-                case GenerationSettings.DelayMode.Manual:
+                case GenerationSettings.DelayModeEnum.Manual:
                     yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
                     yield return null;
                     break;
