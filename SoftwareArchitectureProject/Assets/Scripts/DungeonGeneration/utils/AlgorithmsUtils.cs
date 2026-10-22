@@ -1,67 +1,71 @@
 using UnityEngine;
+using Utils;
 
-public class AlgorithmsUtils
+namespace DungeonGeneration.utils
 {
-    
-    public static bool Intersects(RectInt a, RectInt b)
+    public class AlgorithmsUtils
     {
-        return a.xMin < b.xMax &&
-               a.xMax > b.xMin &&
-               a.yMin < b.yMax &&
-               a.yMax > b.yMin;
-    }
     
-    public static RectInt Intersect(RectInt a, RectInt b)
-    {
-        int x = Mathf.Max(a.xMin, b.xMin);
-        int y = Mathf.Max(a.yMin, b.yMin);
-        int width = Mathf.Min(a.xMax, b.xMax) - x;
-        int height = Mathf.Min(a.yMax, b.yMax) - y;
+        public static bool Intersects(RectInt a, RectInt b)
+        {
+            return a.xMin < b.xMax &&
+                   a.xMax > b.xMin &&
+                   a.yMin < b.yMax &&
+                   a.yMax > b.yMin;
+        }
+    
+        public static RectInt Intersect(RectInt a, RectInt b)
+        {
+            int x = Mathf.Max(a.xMin, b.xMin);
+            int y = Mathf.Max(a.yMin, b.yMin);
+            int width = Mathf.Min(a.xMax, b.xMax) - x;
+            int height = Mathf.Min(a.yMax, b.yMax) - y;
 
-        if (width <= 0 || height <= 0)
-        {
-            return new RectInt();
-        }
-        else
-        {
-            return new RectInt(x, y, width, height);
-        }
-    }
-    
-    public static void FillRectangle(int[,] array, RectInt area, int value)
-    {
-        for (int i = area.y; i < area.y + area.height; i++)
-        {
-            for (int j = area.x; j < area.x + area.width; j++)
+            if (width <= 0 || height <= 0)
             {
-                array[i, j] = value;
+                return new RectInt();
+            }
+            else
+            {
+                return new RectInt(x, y, width, height);
             }
         }
-    }
     
-    public static void FillRectangleOutline(TileMap tileMap, RectInt area, int value) 
-    { 
+        public static void FillRectangle(int[,] array, RectInt area, int value)
+        {
+            for (int i = area.y; i < area.y + area.height; i++)
+            {
+                for (int j = area.x; j < area.x + area.width; j++)
+                {
+                    array[i, j] = value;
+                }
+            }
+        }
+    
+        public static void FillRectangleOutline(TileMap tileMap, RectInt area, int value) 
+        { 
         
-        int endX = area.x + area.width - 1;
-        int endY = area.y + area.height - 1;
+            int endX = area.x + area.width - 1;
+            int endY = area.y + area.height - 1;
 
-        // Draw top and bottom borders
-        for (int x = area.x; x <= endX; x++)
-        {
-            tileMap.SetTile(area.y, x, value);
-            tileMap.SetTile(endY, x, value);
+            // Draw top and bottom borders
+            for (int x = area.x; x <= endX; x++)
+            {
+                tileMap.SetTile(area.y, x, value);
+                tileMap.SetTile(endY, x, value);
+            }
+
+            // Draw left and right borders
+            for (int y = area.y + 1; y < endY; y++)
+            {
+                tileMap.SetTile(y, area.x, value);
+                tileMap.SetTile(y, endX, value);
+            }
         }
 
-        // Draw left and right borders
-        for (int y = area.y + 1; y < endY; y++)
+        public static void DebugRectInt(RectInt rectInt, Color color, float duration = 0f, bool depthTest = false, float height = 0.01f)
         {
-            tileMap.SetTile(y, area.x, value);
-            tileMap.SetTile(y, endX, value);
+            DebugExtension.DebugBounds(new Bounds(new Vector3(rectInt.center.x, 0, rectInt.center.y), new Vector3(rectInt.width, height, rectInt.height)), color, duration, depthTest);
         }
-    }
-
-    public static void DebugRectInt(RectInt rectInt, Color color, float duration = 0f, bool depthTest = false, float height = 0.01f)
-    {
-        DebugExtension.DebugBounds(new Bounds(new Vector3(rectInt.center.x, 0, rectInt.center.y), new Vector3(rectInt.width, height, rectInt.height)), color, duration, depthTest);
     }
 }

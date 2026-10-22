@@ -1,32 +1,36 @@
 ﻿using System.Collections;
+using DungeonGeneration.utils;
 using UnityEngine;
 
-public class TileMapGenerator : DungeonGenerator
+namespace DungeonGeneration.DungeonGenerators
 {
-    protected override IEnumerator Generate()
+    public class TileMapGenerator : DungeonGenerator
     {
-        GenerateTileMap();
-        Debug.Log("Generated Tilemap");
-        
-        doneList = dungeon.roomList;
-        yield return null;
-    }
-    
-    private void GenerateTileMap()
-    {
-        dungeon.tileMap = new TileMap(dungeon.settings.roomBounds.height, dungeon.settings.roomBounds.width);
-        
-        foreach (var room in dungeon.roomList)
+        protected override IEnumerator Generate()
         {
-            AlgorithmsUtils.FillRectangleOutline(dungeon.tileMap, room, 1);
+            GenerateTileMap();
+            Debug.Log("Generated Tilemap");
+        
+            doneList = dungeon.roomList;
+            yield return null;
         }
+    
+        private void GenerateTileMap()
+        {
+            dungeon.tileMap = new TileMap(dungeon.settings.roomBounds.height, dungeon.settings.roomBounds.width);
+        
+            foreach (var room in dungeon.roomList)
+            {
+                AlgorithmsUtils.FillRectangleOutline(dungeon.tileMap, room, 1);
+            }
 
-        foreach (var door in dungeon.doorList)
-        {
-            AlgorithmsUtils.FillRectangleOutline(dungeon.tileMap, door, 0);
-        }
+            foreach (var door in dungeon.doorList)
+            {
+                AlgorithmsUtils.FillRectangleOutline(dungeon.tileMap, door, 0);
+            }
         
+        }
+    
+    
     }
-    
-    
 }

@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
+namespace Inventory
+{
+    /// <summary>
     /// A inventory class that uses Strategy pattern to quickly switch different sorting methods for its items.
     /// </summary>
     public class InventoryModel : MonoBehaviour
@@ -113,3 +115,7 @@ using UnityEngine;
         }
         #endregion
     }
+}
+
+
+

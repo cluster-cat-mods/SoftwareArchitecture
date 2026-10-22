@@ -1,18 +1,21 @@
-using System;
+using DungeonGeneration;
 using UnityEngine;
 
-public abstract class SetupManager : MonoBehaviour
+namespace GameSetup
 {
-    private void OnEnable()
+    public abstract class SetupManager : MonoBehaviour
     {
-        DungeonGenerator.OnDungeonGenerationFinished += Setup;
+        private void OnEnable()
+        {
+            DungeonGenerator.OnDungeonGenerationFinished += Setup;
+        }
+
+        private void OnDisable()
+        {
+            DungeonGenerator.OnDungeonGenerationFinished -= Setup;
+        }
+
+        protected abstract void Setup(Dungeon dungeon);
+
     }
-
-    private void OnDisable()
-    {
-        DungeonGenerator.OnDungeonGenerationFinished -= Setup;
-    }
-
-    protected abstract void Setup(Dungeon dungeon);
-
 }

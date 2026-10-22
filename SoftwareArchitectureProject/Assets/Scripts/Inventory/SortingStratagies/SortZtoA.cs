@@ -1,15 +1,17 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 
-/// <summary>
-/// This is a dummy strategy class, it just convert the item list to an array
-/// and return it without any sorting.
-/// </summary>
-public class SortZtoA : ItemSortingStrategy
+namespace Inventory.SortingStratagies
 {
-    public override Item[] GetSortedItems(List<Item> items)
+    /// <summary>
+    /// This is a dummy strategy class, it just convert the item list to an array
+    /// and return it without any sorting.
+    /// </summary>
+    public class SortZtoA : ItemSortingStrategy
     {
-        return items.OrderByDescending(i => i.ItemName).ToArray();
+        public override Item[] GetSortedItems(List<Item> items)
+        {
+            return items.OrderByDescending(i => i.ItemName).ToArray();
+        }
     }
 }

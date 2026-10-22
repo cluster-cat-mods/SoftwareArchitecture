@@ -2,44 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmallestRoomDeletor : DungeonGenerator
+namespace DungeonGeneration.DungeonGenerators
 {
-    protected override IEnumerator Generate()
+    public class SmallestRoomDeletor : DungeonGenerator
     {
-        yield return RemoveRooms();
-    }
-    
-    private IEnumerator RemoveRooms() //O(n)
-    {
-        nextList = SortList(dungeon.roomList);
-        doneList = new List<RectInt>(Mathf.RoundToInt(nextList.Count * (1 - dungeon.settings.removeFraction)));
-        for (int i = 0; i < doneList.Capacity; i++)
+        protected override IEnumerator Generate()
         {
-            currentRoom = nextList[i];
-            
-            if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant) yield return Wait();
-
-            doneList.Add(currentRoom);
+            yield return RemoveRooms();
         }
-
-        Debug.Log("Removed " + dungeon.settings.removeFraction + " rooms");
-    }
     
-    private List<RectInt> SortList(List<RectInt> listP) //O(n*(n-1)) -> O(n^2)
-    {
-        bool sorted =  false;
-        while (!sorted)
+        private IEnumerator RemoveRooms() //O(n)
         {
-            sorted = true;
-            for (int i = 0; i < listP.Count - 1; i++)
+            nextList = SortList(dungeon.roomList);
+            doneList = new List<RectInt>(Mathf.RoundToInt(nextList.Count * (1 - dungeon.settings.removeFraction)));
+            for (int i = 0; i < doneList.Capacity; i++)
             {
-                if (listP[i].width * listP[i].height > listP[i + 1].width * listP[i + 1].height)
+                currentRoom = nextList[i];
+            
+                if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant) yield return Wait();
+
+                doneList.Add(currentRoom);
+            }
+
+            Debug.Log("Removed " + dungeon.settings.removeFraction + " rooms");
+        }
+    
+        private List<RectInt> SortList(List<RectInt> listP) //O(n*(n-1)) -> O(n^2)
+        {
+            bool sorted =  false;
+            while (!sorted)
+            {
+                sorted = true;
+                for (int i = 0; i < listP.Count - 1; i++)
                 {
-                    (listP[i], listP[i + 1]) = (listP[i + 1], listP[i]);
-                    sorted = false;
+                    if (listP[i].width * listP[i].height > listP[i + 1].width * listP[i + 1].height)
+                    {
+                        (listP[i], listP[i + 1]) = (listP[i + 1], listP[i]);
+                        sorted = false;
+                    }
                 }
             }
+            return listP;
         }
-        return listP;
     }
 }

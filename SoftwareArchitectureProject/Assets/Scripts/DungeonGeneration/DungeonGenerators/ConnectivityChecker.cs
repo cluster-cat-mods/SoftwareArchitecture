@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConnectivityChecker : DungeonGenerator
+namespace DungeonGeneration.DungeonGenerators
 {
-    protected override IEnumerator Generate()
+    public class ConnectivityChecker : DungeonGenerator
     {
-        HashSet<RectInt> temp = new();
-        bool isConnected = CheckConnectivity(out temp);
+        protected override IEnumerator Generate()
+        {
+            HashSet<RectInt> temp = new();
+            bool isConnected = CheckConnectivity(out temp);
         
-        Debug.Log(isConnected ? "Graph is fully connected" : "Graph is not fully connected");
+            Debug.Log(isConnected ? "Graph is fully connected" : "Graph is not fully connected");
         
-        doneList = dungeon.roomList;
-        yield return null;
+            doneList = dungeon.roomList;
+            yield return null;
+        }
     }
 }

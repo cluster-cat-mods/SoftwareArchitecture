@@ -1,85 +1,88 @@
-using System;
-using UnityEngine;
+using DungeonGeneration.utils;
 using NaughtyAttributes;
+using UnityEngine;
 
-[RequireComponent(typeof(Dungeon))]
-public class DungeonDrawer : MonoBehaviour
+namespace DungeonGeneration
 {
-    [SerializeField] private bool drawBounds = true;
-    [SerializeField, ShowIf("drawBounds")] private Color boundsColor = Color.yellow;
-    [SerializeField] private bool drawRooms = true;
-    [SerializeField, ShowIf("drawRooms")] private Color roomColor = Color.yellow;
-    [SerializeField] private bool drawDoors = true;
-    [SerializeField, ShowIf("drawDoors")] private Color doorColor = Color.cyan;
-    [SerializeField] private bool drawGraph = true;
-    [SerializeField, ShowIf("drawGraph")] private Color graphColor = Color.white;
-    [SerializeField] private bool drawTileMap = true;
-    [SerializeField, ShowIf("drawTileMap")] private Color tileColor0 = Color.red;
-    [SerializeField, ShowIf("drawTileMap")] private Color tileColor1 = Color.green;
-    
-    private Dungeon _dungeon;
-    private RectInt _minSizeBounds;
-
-    private void Start()
+    [RequireComponent(typeof(Dungeon))]
+    public class DungeonDrawer : MonoBehaviour
     {
-        _dungeon = GetComponent<Dungeon>();
-    }
+        [SerializeField] private bool drawBounds = true;
+        [SerializeField, ShowIf("drawBounds")] private Color boundsColor = Color.yellow;
+        [SerializeField] private bool drawRooms = true;
+        [SerializeField, ShowIf("drawRooms")] private Color roomColor = Color.yellow;
+        [SerializeField] private bool drawDoors = true;
+        [SerializeField, ShowIf("drawDoors")] private Color doorColor = Color.cyan;
+        [SerializeField] private bool drawGraph = true;
+        [SerializeField, ShowIf("drawGraph")] private Color graphColor = Color.white;
+        [SerializeField] private bool drawTileMap = true;
+        [SerializeField, ShowIf("drawTileMap")] private Color tileColor0 = Color.red;
+        [SerializeField, ShowIf("drawTileMap")] private Color tileColor1 = Color.green;
+    
+        private Dungeon _dungeon;
+        private RectInt _minSizeBounds;
 
-    private void Update()
-    {
-        DrawDebug();
-    }
+        private void Start()
+        {
+            _dungeon = GetComponent<Dungeon>();
+        }
+
+        private void Update()
+        {
+            DrawDebug();
+        }
     
     
-    private void DrawDebug()
-    {
-        if (_dungeon.roomList.Count < 2 && drawBounds)
+        private void DrawDebug()
         {
-            AlgorithmsUtils.DebugRectInt(_dungeon.settings.roomBounds, boundsColor);
-
-            _minSizeBounds = new RectInt(_dungeon.settings.roomBounds.position, new Vector2Int(_dungeon.settings.minSize, _dungeon.settings.minSize));
-            AlgorithmsUtils.DebugRectInt(_minSizeBounds, boundsColor);
-        }
-        
-        if (drawRooms) 
-        {
-            foreach (var room in _dungeon.roomList) AlgorithmsUtils.DebugRectInt(room, roomColor);
-            
-        }
-        if (drawDoors) foreach (var door in _dungeon.doorList)
-        {
-            AlgorithmsUtils.DebugRectInt(door, doorColor);
-        }
-        if (drawGraph)
-        {
-            foreach (var node in _dungeon.graph.GetNodes())
+            if (_dungeon.roomList.Count < 2 && drawBounds)
             {
-                foreach (var edge in _dungeon.graph.GetNeighbors(node))
+                AlgorithmsUtils.DebugRectInt(_dungeon.settings.roomBounds, boundsColor);
+
+                _minSizeBounds = new RectInt(_dungeon.settings.roomBounds.position, new Vector2Int(_dungeon.settings.minSize, _dungeon.settings.minSize));
+                AlgorithmsUtils.DebugRectInt(_minSizeBounds, boundsColor);
+            }
+        
+            if (drawRooms) 
+            {
+                foreach (var room in _dungeon.roomList) AlgorithmsUtils.DebugRectInt(room, roomColor);
+            
+            }
+            if (drawDoors) foreach (var door in _dungeon.doorList)
+            {
+                AlgorithmsUtils.DebugRectInt(door, doorColor);
+            }
+            if (drawGraph)
+            {
+                foreach (var node in _dungeon.graph.GetNodes())
                 {
-                    Debug.DrawLine(new Vector3(node.center.x, 0, node.center.y), new Vector3(edge.center.x, 0, edge.center.y), graphColor);
+                    foreach (var edge in _dungeon.graph.GetNeighbors(node))
+                    {
+                        Debug.DrawLine(new Vector3(node.center.x, 0, node.center.y), new Vector3(edge.center.x, 0, edge.center.y), graphColor);
+                    }
                 }
             }
+        
+        
         }
-        
-        
-    }
 
-    private void OnDrawGizmos()
-    {
-        if (!drawTileMap || _dungeon == null) return;
-        for (int r = 0; r < _dungeon.tileMap.GetLength(0); r++)
+        private void OnDrawGizmos()
         {
-            for (int c = 0; c < _dungeon.tileMap.GetLength(1); c++)
+            if (!drawTileMap || _dungeon == null) return;
+            for (int r = 0; r < _dungeon.tileMap.GetLength(0); r++)
             {
-                if (_dungeon.tileMap.GetTile(r, c) == 1)
+                for (int c = 0; c < _dungeon.tileMap.GetLength(1); c++)
                 {
-                    Gizmos.color = tileColor1;
+                    if (_dungeon.tileMap.GetTile(r, c) == 1)
+                    {
+                        Gizmos.color = tileColor1;
+                    }
+                    else
+                    {
+                        Gizmos.color = tileColor0;
+                    }
+                    Gizmos.DrawCube(new Vector3(c,-1,r), new Vector3(0.8f,0.8f,0.8f));
                 }
-                else
-                {
-                    Gizmos.color = tileColor0;
-                }
-                Gizmos.DrawCube(new Vector3(c,-1,r), new Vector3(0.8f,0.8f,0.8f));
             }
         }
     }

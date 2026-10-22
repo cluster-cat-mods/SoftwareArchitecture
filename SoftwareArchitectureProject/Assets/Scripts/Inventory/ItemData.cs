@@ -1,8 +1,9 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
+namespace Inventory
+{
+    /// <summary>
     /// This is the script for creating an ItemData scriptable object, which is
     /// "blueprint" to create item objects with the properties set up in the inspector,
     /// it is an implementation of factory pattern.defenseite
@@ -36,7 +37,7 @@ using UnityEngine;
         [SerializeField]
         private string id;
         public string Id => id;//This setup allows access to the private field 'id'
-                               //while also allows it to be shown in the inspector
+        //while also allows it to be shown in the inspector
 
         [Header("Core properties")]
         [SerializeField]
@@ -69,3 +70,4 @@ using UnityEngine;
             isStackable = itemData.isStackable;
         }
     }
+}

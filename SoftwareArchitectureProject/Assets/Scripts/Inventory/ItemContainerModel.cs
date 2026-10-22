@@ -1,21 +1,24 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
-/// <summary>
-/// An item container that invoke the onGetItem action to
-/// give an item, basicevent bus pattern implemention, which
-/// will be introduced in bootcamp 3.
-/// </summary>
-public class ItemContainerModel : MonoBehaviour
+namespace Inventory
 {
-    public static Action<Item> onGetItem;
-    [SerializeField]
-    private ItemData itemData;
-
-    public Item GiveItem()
+    /// <summary>
+    /// An item container that invoke the onGetItem action to
+    /// give an item, basicevent bus pattern implemention, which
+    /// will be introduced in bootcamp 3.
+    /// </summary>
+    public class ItemContainerModel : MonoBehaviour
     {
-        Item item = itemData.CreateItem();
-        onGetItem?.Invoke(item);
-        return item;
+        public static Action<Item> onGetItem;
+        [SerializeField]
+        private ItemData itemData;
+
+        public Item GiveItem()
+        {
+            Item item = itemData.CreateItem();
+            onGetItem?.Invoke(item);
+            return item;
+        }
     }
 }

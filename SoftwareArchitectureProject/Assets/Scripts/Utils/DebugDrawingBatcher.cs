@@ -2,38 +2,41 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DebugDrawingBatcher : MonoBehaviour
+namespace Utils
 {
-    private static DebugDrawingBatcher instance = null;
-    private List<Action> batchedCalls = new();
-
-    public static void BatchCall(Action action)
+    public class DebugDrawingBatcher : MonoBehaviour
     {
-        GetInstance().batchedCalls.Add(action);
-    }
+        private static DebugDrawingBatcher instance = null;
+        private List<Action> batchedCalls = new();
 
-    public static void ClearCalls()
-    {
-        GetInstance().batchedCalls.Clear();
-    }
-
-    private static DebugDrawingBatcher GetInstance()
-    {
-        if (instance == null)
+        public static void BatchCall(Action action)
         {
-            GameObject go = new GameObject("DebugDrawingBatcher");
-            go.hideFlags = HideFlags.HideAndDontSave;
-            instance = go.AddComponent<DebugDrawingBatcher>();
+            GetInstance().batchedCalls.Add(action);
         }
 
-        return instance;
-    }
-
-    private void Update()
-    {
-        foreach (var call in batchedCalls)
+        public static void ClearCalls()
         {
-            call.Invoke();
+            GetInstance().batchedCalls.Clear();
+        }
+
+        private static DebugDrawingBatcher GetInstance()
+        {
+            if (instance == null)
+            {
+                GameObject go = new GameObject("DebugDrawingBatcher");
+                go.hideFlags = HideFlags.HideAndDontSave;
+                instance = go.AddComponent<DebugDrawingBatcher>();
+            }
+
+            return instance;
+        }
+
+        private void Update()
+        {
+            foreach (var call in batchedCalls)
+            {
+                call.Invoke();
+            }
         }
     }
 }

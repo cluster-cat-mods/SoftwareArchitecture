@@ -1,29 +1,31 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 
-/// <summary>
-/// This class presents a number using a TextMeshProUGUI component.
-/// </summary>
-public class TMPNumberPresenter : MonoBehaviour
+namespace UI
 {
-    [SerializeField]
-    private string prefix = "x";
-    [SerializeField]
-    private TextMeshProUGUI text;
-    private int number;
-    public int Number
+    /// <summary>
+    /// This class presents a number using a TextMeshProUGUI component.
+    /// </summary>
+    public class TMPNumberPresenter : MonoBehaviour
     {
-        get => number;
-        set
+        [SerializeField]
+        private string prefix = "x";
+        [SerializeField]
+        private TextMeshProUGUI text;
+        private int number;
+        public int Number
         {
-            number = value;
-            PresentNumber();
+            get => number;
+            set
+            {
+                number = value;
+                PresentNumber();
+            }
         }
-    }
 
-    public void PresentNumber()
-    {
-        text.text = prefix + number.ToString();
+        public void PresentNumber()
+        {
+            text.text = prefix + number.ToString();
+        }
     }
 }

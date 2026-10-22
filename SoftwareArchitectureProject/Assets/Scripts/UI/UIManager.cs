@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+namespace UI
 {
-    public void ToggleActive(GameObject gameObject)
+    public class UIManager : MonoBehaviour
     {
-        gameObject.SetActive(!gameObject.activeSelf);
+        public void ToggleActive(GameObject gameObject)
+        {
+            gameObject.SetActive(!gameObject.activeSelf);
+        }
     }
 }

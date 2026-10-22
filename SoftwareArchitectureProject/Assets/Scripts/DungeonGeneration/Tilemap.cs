@@ -1,42 +1,45 @@
 using System;
 
-[Serializable]
-public class TileMap
+namespace DungeonGeneration
 {
-    private int[,] Map {get;}
+    [Serializable]
+    public class TileMap
+    {
+        private int[,] Map {get;}
 
-    public TileMap()
-    {
-        Map  = new int[0, 0];
-    }
-    public TileMap(int h, int w)
-    {
-        Map = new int[h, w];
-    }
+        public TileMap()
+        {
+            Map  = new int[0, 0];
+        }
+        public TileMap(int h, int w)
+        {
+            Map = new int[h, w];
+        }
 
-    public void SetTile(int row, int col,  int val)
-    {
-        Map[row, col] = val;
-    }
+        public void SetTile(int row, int col,  int val)
+        {
+            Map[row, col] = val;
+        }
 
-    public int GetTile(int row, int col)
-    {
-        return Map[row, col];
-    }
+        public int GetTile(int row, int col)
+        {
+            return Map[row, col];
+        }
     
-    public int GetValue(int row, int col)
-    {
-        return Map[row, col] | Map[row + 1, col] << 1 | Map[row + 1, col + 1] << 2 | Map[row, col + 1] << 3;
-    }
+        public int GetValue(int row, int col)
+        {
+            return Map[row, col] | Map[row + 1, col] << 1 | Map[row + 1, col + 1] << 2 | Map[row, col + 1] << 3;
+        }
 
-    public int[,] GetTileMap()
-    {
-        return Map;
-    }
+        public int[,] GetTileMap()
+        {
+            return Map;
+        }
 
-    public int GetLength(int axis)
-    {
-        return Map.GetLength(axis);
-    }
+        public int GetLength(int axis)
+        {
+            return Map.GetLength(axis);
+        }
 
+    }
 }

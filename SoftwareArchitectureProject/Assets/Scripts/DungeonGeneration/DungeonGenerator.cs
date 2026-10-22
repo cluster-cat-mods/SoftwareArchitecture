@@ -1,153 +1,155 @@
 using System;
-using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
+using DungeonGeneration.utils;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.AdaptivePerformance;
 
-[RequireComponent(typeof(Dungeon))]
-public abstract class DungeonGenerator : MonoBehaviour
+namespace DungeonGeneration
 {
-    [SerializeField] protected bool isGenerationStartPoint;
-    [SerializeField] protected DungeonGenerator nextGenerator;
+    [RequireComponent(typeof(Dungeon))]
+    public abstract class DungeonGenerator : MonoBehaviour
+    {
+        [SerializeField] protected bool isGenerationStartPoint;
+        [SerializeField] protected DungeonGenerator nextGenerator;
     
-    protected Dungeon dungeon;
-    protected List<RectInt> nextList = new();
-    protected List<RectInt> doneList = new();
-    protected RectInt currentRoom = new();
-    protected RectInt otherCurrentRoom = new();
-    protected RectInt[] lastArray = new RectInt[2];
+        protected Dungeon dungeon;
+        protected List<RectInt> nextList = new();
+        protected List<RectInt> doneList = new();
+        protected RectInt currentRoom = new();
+        protected RectInt otherCurrentRoom = new();
+        protected RectInt[] lastArray = new RectInt[2];
 
-    public static event Action<Dungeon> OnDungeonGenerationFinished;
+        public static event Action<Dungeon> OnDungeonGenerationFinished;
     
 
 #if  UNITY_EDITOR
-    [Button, ShowIf("isGenerationStartPoint")]
-    public void Regenerate()
-    {
-        Start();
-    }
-    [SerializeField] protected bool debugDraw = true;
-    [SerializeField, ShowIf("debugDraw")] protected Color nextColor = Color.darkGray;
-    [SerializeField, ShowIf("debugDraw")] protected Color selectedColor = Color.cyan;
-    [SerializeField, ShowIf("debugDraw")] protected Color otherSelectedColor = Color.magenta;
-    [SerializeField, ShowIf("debugDraw")] protected Color doneColor = Color.green;
+        [Button, ShowIf("isGenerationStartPoint")]
+        public void Regenerate()
+        {
+            Start();
+        }
+        [SerializeField] protected bool debugDraw = true;
+        [SerializeField, ShowIf("debugDraw")] protected Color nextColor = Color.darkGray;
+        [SerializeField, ShowIf("debugDraw")] protected Color selectedColor = Color.cyan;
+        [SerializeField, ShowIf("debugDraw")] protected Color otherSelectedColor = Color.magenta;
+        [SerializeField, ShowIf("debugDraw")] protected Color doneColor = Color.green;
 #endif
 
-    private void OnEnable()
-    {
-        dungeon = GetComponent<Dungeon>();
-    }
-
-    private void Start()
-    {
-        if (isGenerationStartPoint)
+        private void OnEnable()
         {
-            ClearDungeon();
-            dungeon.roomList.Add(dungeon.settings.roomBounds);
-            StartCoroutine(RunGenerator());
-            Debug.Log("Started dungeon generation " + this);
+            dungeon = GetComponent<Dungeon>();
         }
-    }
 
-    private IEnumerator RunGenerator()
-    {
-        yield return Generate();
-        dungeon.roomList = new List<RectInt>(doneList);
-        ClearGenerator();
+        private void Start()
+        {
+            if (isGenerationStartPoint)
+            {
+                ClearDungeon();
+                dungeon.roomList.Add(dungeon.settings.roomBounds);
+                StartCoroutine(RunGenerator());
+                Debug.Log("Started dungeon generation " + this);
+            }
+        }
+
+        private IEnumerator RunGenerator()
+        {
+            yield return Generate();
+            dungeon.roomList = new List<RectInt>(doneList);
+            ClearGenerator();
         
-        if (nextGenerator != null)
-        {
-            Debug.Log("Started next generator: " + nextGenerator);
-            StartCoroutine(nextGenerator.RunGenerator());
+            if (nextGenerator != null)
+            {
+                Debug.Log("Started next generator: " + nextGenerator);
+                StartCoroutine(nextGenerator.RunGenerator());
+            }
+            else
+            {
+                dungeon.finishedGenerating = true;
+                OnDungeonGenerationFinished?.Invoke(dungeon);
+                Debug.Log("Finished generating dungeon");
+            }
         }
-        else
-        {
-            dungeon.finishedGenerating = true;
-            OnDungeonGenerationFinished?.Invoke(dungeon);
-            Debug.Log("Finished generating dungeon");
-        }
-    }
     
-    protected abstract IEnumerator Generate();
+        protected abstract IEnumerator Generate();
 
 
-    private void ClearGenerator()
-    {
-        nextList.Clear();
-        doneList.Clear();
-        currentRoom = new();
-        otherCurrentRoom = new();
-        lastArray = new RectInt[2];
-    }
-
-    private void ClearDungeon()
-    {
-        dungeon.roomList = new();
-        dungeon.doorList = new();
-        dungeon.graph = new();
-        dungeon.tileMap = new();
-
-        for (int i = 0; i < transform.childCount; i++)
+        private void ClearGenerator()
         {
-            Destroy(transform.GetChild(i).gameObject);
+            nextList.Clear();
+            doneList.Clear();
+            currentRoom = new();
+            otherCurrentRoom = new();
+            lastArray = new RectInt[2];
         }
-    }
 
-    protected bool CheckConnectivity(out HashSet<RectInt> visitedP)
-    {
-        bool isConnected = false;
-        HashSet<RectInt> visited = new();
-        switch (dungeon.settings.algorithm)
+        private void ClearDungeon()
         {
-            case GenerationSettings.Algorithm.Bfs:
-                isConnected = dungeon.graph.CheckConnectivityBFS(out visited);
-                break;
-            case GenerationSettings.Algorithm.Dfs:
-                isConnected = dungeon.graph.CheckConnectivityDFS(out  visited);
-                break;
-            case GenerationSettings.Algorithm.DfsRecursive:
-                isConnected = dungeon.graph.CheckConnectivityDFSRecursive(out visited);
-                break;
+            dungeon.roomList = new();
+            dungeon.doorList = new();
+            dungeon.graph = new();
+            dungeon.tileMap = new();
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Destroy(transform.GetChild(i).gameObject);
+            }
         }
+
+        protected bool CheckConnectivity(out HashSet<RectInt> visitedP)
+        {
+            bool isConnected = false;
+            HashSet<RectInt> visited = new();
+            switch (dungeon.settings.algorithm)
+            {
+                case GenerationSettings.Algorithm.Bfs:
+                    isConnected = dungeon.graph.CheckConnectivityBFS(out visited);
+                    break;
+                case GenerationSettings.Algorithm.Dfs:
+                    isConnected = dungeon.graph.CheckConnectivityDFS(out  visited);
+                    break;
+                case GenerationSettings.Algorithm.DfsRecursive:
+                    isConnected = dungeon.graph.CheckConnectivityDFSRecursive(out visited);
+                    break;
+            }
         
-        visitedP = visited;
-        return isConnected;
-    }
-    
-    protected IEnumerator Wait() //O(1)
-    {
-        switch (dungeon.settings.delayMode)
-        {
-            case GenerationSettings.DelayMode.Instant:
-                break;
-            case GenerationSettings.DelayMode.Stepwise:
-                yield return new WaitForSeconds(dungeon.settings.stepwiseDelay);
-                break;
-            case GenerationSettings.DelayMode.Manual:
-                yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-                yield return null;
-                break;
+            visitedP = visited;
+            return isConnected;
         }
-    }
+    
+        protected IEnumerator Wait() //O(1)
+        {
+            switch (dungeon.settings.delayMode)
+            {
+                case GenerationSettings.DelayMode.Instant:
+                    break;
+                case GenerationSettings.DelayMode.Stepwise:
+                    yield return new WaitForSeconds(dungeon.settings.stepwiseDelay);
+                    break;
+                case GenerationSettings.DelayMode.Manual:
+                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+                    yield return null;
+                    break;
+            }
+        }
     
     
 
 
 #if UNITY_EDITOR
-    private void Update()
-    {
-        if (debugDraw)
+        private void Update()
         {
-            foreach (var room in nextList) AlgorithmsUtils.DebugRectInt(room, nextColor);
-            foreach (var room in doneList) AlgorithmsUtils.DebugRectInt(room, doneColor);
-            AlgorithmsUtils.DebugRectInt(currentRoom, selectedColor);
-            AlgorithmsUtils.DebugRectInt(otherCurrentRoom, otherSelectedColor);
-            foreach (var room in lastArray) AlgorithmsUtils.DebugRectInt(room, otherSelectedColor);
-        }
+            if (debugDraw)
+            {
+                foreach (var room in nextList) AlgorithmsUtils.DebugRectInt(room, nextColor);
+                foreach (var room in doneList) AlgorithmsUtils.DebugRectInt(room, doneColor);
+                AlgorithmsUtils.DebugRectInt(currentRoom, selectedColor);
+                AlgorithmsUtils.DebugRectInt(otherCurrentRoom, otherSelectedColor);
+                foreach (var room in lastArray) AlgorithmsUtils.DebugRectInt(room, otherSelectedColor);
+            }
         
-    }
+        }
 #endif
     
+    }
 }
