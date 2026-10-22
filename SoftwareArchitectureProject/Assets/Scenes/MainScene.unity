@@ -908,6 +908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 444697180}
   - component: {fileID: 444697179}
+  - component: {fileID: 444697181}
   m_Layer: 0
   m_Name: InputController
   m_TagString: Untagged
@@ -975,6 +976,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 399948865}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &444697181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444697178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e87cbb98943a502419d66d23b54a08a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MouseClickController
+  minClickDistance: 0
+  onClickPosition:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 808655373}
+        m_TargetAssemblyTypeName: UnityEngine.AI.NavMeshAgent, UnityEngine
+        m_MethodName: set_destination
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onClickSuccessful:
+    m_PersistentCalls:
+      m_Calls: []
+  onClickUnsuccessful:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &517834968
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +1022,6 @@ GameObject:
   - component: {fileID: 517834971}
   - component: {fileID: 517834970}
   - component: {fileID: 517834969}
-  - component: {fileID: 517834973}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -1101,33 +1135,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &517834973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 517834968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e87cbb98943a502419d66d23b54a08a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MouseClickController
-  onClickPosition:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 808655373}
-        m_TargetAssemblyTypeName: UnityEngine.AI.NavMeshAgent, UnityEngine
-        m_MethodName: set_destination
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &534741306
 GameObject:
   m_ObjectHideFlags: 0

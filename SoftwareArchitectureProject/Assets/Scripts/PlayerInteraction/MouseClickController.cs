@@ -6,14 +6,26 @@ namespace PlayerInteraction
 {
     public class MouseClickController : MonoBehaviour
     {
-        private Vector3 clickPosition;
-    
+        [SerializeField] private float minClickDistance;
         public UnityEvent<Vector3> onClickPosition;
-        void Update() { 
+        public UnityEvent onClickSuccessful;
+        public UnityEvent onClickUnsuccessful;
+        
+        private Vector3 clickPosition;
+        
+        void Update() 
+        { 
             if (Input.GetMouseButtonDown(0)) 
             { 
                 Ray mouseRay = Camera.main.ScreenPointToRay( Input.mousePosition ); 
-                if (Physics.Raycast(mouseRay, out RaycastHit hitInfo )) { 
+                if (Physics.Raycast(mouseRay, out RaycastHit hitInfo )) 
+                {
+                    if (hitInfo.collider.gameObject.GetType() == typeof(ClickEvent))
+                    {
+                        onClickSuccessful.Invoke();
+                        ClickEvent clickEvent = hitInfo.collider.GetComponent<ClickEvent>();
+                        clickEvent.OnClick.Invoke();
+                    }
                     clickPosition = hitInfo.point; 
                 
                     onClickPosition.Invoke(clickPosition);
