@@ -19,7 +19,6 @@ using UnityEngine;
         public Item[] Items => items.ToArray();
 
         // MonoBehaviour-based sorting strategies.
-        [SerializeField]
         private ItemSortingStrategy[] itemSortingStrategies;
 
         // Index of the currently active sorting strategy.
@@ -58,7 +57,7 @@ using UnityEngine;
         // Loads sorting strategy components from child objects.
         private void LoadItemSortingStrategies()
         {
-            itemSortingStrategies = GetComponentsInChildren<ItemSortingStrategy>();
+            itemSortingStrategies = transform.GetChild(0).GetComponents<ItemSortingStrategy>();
         }
 
         // Returns the items sorted according to the current strategy.

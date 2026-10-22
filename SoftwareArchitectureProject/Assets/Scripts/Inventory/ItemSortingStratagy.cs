@@ -5,6 +5,8 @@ using System;
 /// <summary>
 /// Abstract class for item sorting strategies.
 /// </summary>
+
+[Serializable]
 public abstract class ItemSortingStrategy : MonoBehaviour
 {
     [SerializeField]
