@@ -1,0 +1,21 @@
+using UnityEngine;
+using System;
+
+/// <summary>
+/// An item container that invoke the onGetItem action to
+/// give an item, basicevent bus pattern implemention, which
+/// will be introduced in bootcamp 3.
+/// </summary>
+public class ItemContainerModel : MonoBehaviour
+{
+    public static Action<Item> onGetItem;
+    [SerializeField]
+    private ItemData itemData;
+
+    public Item GiveItem()
+    {
+        Item item = itemData.CreateItem();
+        onGetItem?.Invoke(item);
+        return item;
+    }
+}
