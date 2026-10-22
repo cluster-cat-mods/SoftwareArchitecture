@@ -20,7 +20,7 @@ namespace DungeonGeneration
         [SerializeField, ShowIf("drawTileMap")] private Color tileColor1 = Color.green;
     
         private Dungeon _dungeon;
-        private RectInt _minSizeBounds;
+        private RectInt _MinSizeBounds;
 
         private void Start()
         {
@@ -37,10 +37,10 @@ namespace DungeonGeneration
         {
             if (_dungeon.roomList.Count < 2 && drawBounds)
             {
-                AlgorithmsUtils.DebugRectInt(_dungeon.settings.roomBounds, boundsColor);
+                AlgorithmsUtils.DebugRectInt(_dungeon.settings.RoomBounds, boundsColor);
 
-                _minSizeBounds = new RectInt(_dungeon.settings.roomBounds.position, new Vector2Int(_dungeon.settings.minSize, _dungeon.settings.minSize));
-                AlgorithmsUtils.DebugRectInt(_minSizeBounds, boundsColor);
+                _MinSizeBounds = new RectInt(_dungeon.settings.RoomBounds.position, new Vector2Int(_dungeon.settings.MinSize, _dungeon.settings.MinSize));
+                AlgorithmsUtils.DebugRectInt(_MinSizeBounds, boundsColor);
             }
         
             if (drawRooms) 

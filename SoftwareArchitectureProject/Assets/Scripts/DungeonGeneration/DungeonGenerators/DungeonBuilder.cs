@@ -49,8 +49,6 @@ namespace DungeonGeneration.DungeonGenerators
         protected override IEnumerator Generate()
         {
             yield return BuildDungeon();
-
-            doneList = dungeon.roomList;
         }
     
         private IEnumerator BuildDungeon()
@@ -101,8 +99,8 @@ namespace DungeonGeneration.DungeonGenerators
         private void BuildTile(int row,  int col)
         {
             int val = dungeon.tileMap.GetValue(row, col);
-            GameObject go = dungeon.settings.dungeonPrefabs[_valToPrefab[val].Item1];
-            if (_valToPrefab[val].Item1 < dungeon.settings.dungeonPrefabs.Length - 1) Instantiate(go, new Vector3(col, 0, row), Quaternion.Euler(new Vector3(0, _valToPrefab[val].Item2, 0)), transform.GetChild(_valToPrefab[val].Item1));
+            GameObject go = dungeon.settings.DungeonPrefabs[_valToPrefab[val].Item1];
+            if (_valToPrefab[val].Item1 < dungeon.settings.DungeonPrefabs.Length - 1) Instantiate(go, new Vector3(col, 0, row), Quaternion.Euler(new Vector3(0, _valToPrefab[val].Item2, 0)), transform.GetChild(_valToPrefab[val].Item1));
             //scale factor not perfect
         }
     
@@ -114,7 +112,7 @@ namespace DungeonGeneration.DungeonGenerators
                 {
                     BuildTile(roomP.position.y + r, roomP.position.x + c);
 
-                    if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant) yield return Wait();
+                    if (dungeon.settings.DelayMode != GenerationSettings.DelayModeEnum.Instant) yield return Wait();
                 }
             }
         
@@ -133,9 +131,9 @@ namespace DungeonGeneration.DungeonGenerators
                         i++;
                         continue;
                     }
-                    Instantiate(dungeon.settings.dungeonPrefabs[doorVals[i].Item1], new Vector3(doorP.position.x + c, 0, doorP.position.y + r), Quaternion.Euler(new Vector3(0, doorVals[i].Item2)), transform.GetChild(doorVals[i].Item1));
+                    Instantiate(dungeon.settings.DungeonPrefabs[doorVals[i].Item1], new Vector3(doorP.position.x + c, 0, doorP.position.y + r), Quaternion.Euler(new Vector3(0, doorVals[i].Item2)), transform.GetChild(doorVals[i].Item1));
                     i++;
-                    if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant) yield return Wait();
+                    if (dungeon.settings.DelayMode != GenerationSettings.DelayModeEnum.Instant) yield return Wait();
                 }
             }
         

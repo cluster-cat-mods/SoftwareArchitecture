@@ -14,17 +14,17 @@ namespace DungeonGeneration.DungeonGenerators
         private IEnumerator RemoveRooms() //O(n)
         {
             nextList = SortList(dungeon.roomList);
-            doneList = new List<RectInt>(Mathf.RoundToInt(nextList.Count * (1 - dungeon.settings.removeFraction)));
+            doneList = new List<RectInt>(Mathf.RoundToInt(nextList.Count * (1 - dungeon.settings.FractionToRemove)));
             for (int i = 0; i < doneList.Capacity; i++)
             {
                 currentRoom = nextList[i];
             
-                if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant) yield return Wait();
+                if (dungeon.settings.DelayMode != GenerationSettings.DelayModeEnum.Instant) yield return Wait();
 
                 doneList.Add(currentRoom);
             }
 
-            Debug.Log("Removed " + dungeon.settings.removeFraction + " rooms");
+            Debug.Log("Removed " + dungeon.settings.FractionToRemove + " rooms");
         }
     
         private List<RectInt> SortList(List<RectInt> listP) //O(n*(n-1)) -> O(n^2)

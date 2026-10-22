@@ -12,8 +12,7 @@ namespace DungeonGeneration.DungeonGenerators
             bool isConnected = CheckConnectivity(out temp);
         
             Debug.Log(isConnected ? "Graph is fully connected" : "Graph is not fully connected");
-        
-            doneList = dungeon.roomList;
+
             yield return null;
         }
     }

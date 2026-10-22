@@ -9,7 +9,6 @@ namespace DungeonGeneration.DungeonGenerators
         protected override IEnumerator Generate()
         {
             GenerateNavMesh();
-            doneList = dungeon.roomList;
             yield return null;
         }
 

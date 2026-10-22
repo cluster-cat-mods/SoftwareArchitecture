@@ -48,7 +48,7 @@ namespace DungeonGeneration.DungeonGenerators
                         dungeon.graph.AddEdge(door, otherCurrentRoom);
                     }
                         
-                    if (dungeon.settings.delayMode != GenerationSettings.DelayMode.Instant) yield return Wait();
+                    if (dungeon.settings.DelayMode != GenerationSettings.DelayModeEnum.Instant) yield return Wait();
                 
                 }
 

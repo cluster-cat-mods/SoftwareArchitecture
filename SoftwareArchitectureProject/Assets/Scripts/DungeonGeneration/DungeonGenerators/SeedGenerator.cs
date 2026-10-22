@@ -11,13 +11,12 @@ namespace DungeonGeneration.DungeonGenerators
         protected override IEnumerator Generate()
         {
             SetSeed();
-            doneList = dungeon.roomList;
             yield return null;
         }
     
         private void SetSeed() //O(1)
         {
-            if (dungeon.settings.useRandomSeed)
+            if (dungeon.settings.UseRandomSeed)
             {
                 dungeon.settings.seed = DateTime.Now.GetHashCode();
                 Debug.Log("Seed: " + dungeon.settings.seed);

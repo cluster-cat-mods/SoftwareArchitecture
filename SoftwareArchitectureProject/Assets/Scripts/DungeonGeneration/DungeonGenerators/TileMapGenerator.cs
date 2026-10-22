@@ -10,14 +10,12 @@ namespace DungeonGeneration.DungeonGenerators
         {
             GenerateTileMap();
             Debug.Log("Generated Tilemap");
-        
-            doneList = dungeon.roomList;
             yield return null;
         }
     
         private void GenerateTileMap()
         {
-            dungeon.tileMap = new TileMap(dungeon.settings.roomBounds.height, dungeon.settings.roomBounds.width);
+            dungeon.tileMap = new TileMap(dungeon.settings.RoomBounds.height, dungeon.settings.RoomBounds.width);
         
             foreach (var room in dungeon.roomList)
             {
