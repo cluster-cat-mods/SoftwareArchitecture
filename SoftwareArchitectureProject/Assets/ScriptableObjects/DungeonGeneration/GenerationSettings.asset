@@ -15,13 +15,13 @@ MonoBehaviour:
   roomBounds:
     x: 0
     y: 0
-    width: 300
-    height: 150
-  minSize: 20
+    width: 150
+    height: 75
+  minSize: 10
   divisionRange: 5
   fractionToRemove: 0.2
   useRandomSeed: 1
-  seed: -638462074
+  seed: -649754664
   algorithm: 1
   dungeonPrefabs:
   - {fileID: 6870425188746005989, guid: c2643feb864243e4f8f1f2fcc7ebe7a1, type: 3}
@@ -30,7 +30,8 @@ MonoBehaviour:
   - {fileID: 6115889867821387716, guid: 8198013cab109044e9d1717bd1e9f207, type: 3}
   - {fileID: 0}
   roomObjectPatterns:
-  - {fileID: 11400000, guid: 3387ad1be94c6354995f91ac963fdca9, type: 2}
-  delayMode: 0
+  - {fileID: 11400000, guid: 019a4a0563fc429448cb6aec3c3ea9fd, type: 2}
+  - {fileID: 11400000, guid: 4703e0442bd5d4e4da27459e8710aca2, type: 2}
+  delayMode: 1
   manualKey: 32
   stepwiseDelay: 0

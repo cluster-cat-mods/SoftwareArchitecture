@@ -44,7 +44,7 @@ namespace DungeonGeneration.DungeonGenerators
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        Instantiate(prefabs[num], pos + new Vector3(dist * j, 0, dist * i), Quaternion.identity);
+                        if (prefabs[num] != null) Instantiate(prefabs[num], pos + new Vector3(dist * j, 0, dist * i), Quaternion.identity);
                         num++;
                         
                         if (dungeon.settings.DelayMode != GenerationSettings.DelayModeEnum.Instant) yield return Wait();
@@ -53,7 +53,7 @@ namespace DungeonGeneration.DungeonGenerators
 
                 for (int i = 0; i < 3; i++)
                 {
-                    Instantiate(prefabs[num], pos2 + new Vector3(0, 0, dist * i), Quaternion.identity);
+                    if (prefabs[num] != null) Instantiate(prefabs[num], pos2 + new Vector3(0, 0, dist * i), Quaternion.identity);
                     num++;
                         
                     if (dungeon.settings.DelayMode != GenerationSettings.DelayModeEnum.Instant) yield return Wait();
@@ -70,7 +70,7 @@ namespace DungeonGeneration.DungeonGenerators
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        Instantiate(prefabs[num], pos + new Vector3(dist * i, 0, dist * j), Quaternion.identity);
+                        if (prefabs[num] != null) Instantiate(prefabs[num], pos + new Vector3(dist * i, 0, dist * j), Quaternion.identity);
                         num++;
                         
                         if (dungeon.settings.DelayMode != GenerationSettings.DelayModeEnum.Instant) yield return Wait();
@@ -79,7 +79,7 @@ namespace DungeonGeneration.DungeonGenerators
 
                 for (int i = 0; i < 3; i++)
                 {
-                    Instantiate(prefabs[num], pos2 + new Vector3(dist * i, 0, 0), Quaternion.identity);
+                    if (prefabs[num] != null) Instantiate(prefabs[num], pos2 + new Vector3(dist * i, 0, 0), Quaternion.identity);
                     num++;
                         
                     if (dungeon.settings.DelayMode != GenerationSettings.DelayModeEnum.Instant) yield return Wait();
@@ -94,7 +94,7 @@ namespace DungeonGeneration.DungeonGenerators
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        Instantiate(prefabs[num], pos + new Vector3(dist * j, 0, dist * i), Quaternion.identity);
+                        if (prefabs[num] != null) Instantiate(prefabs[num], pos + new Vector3(dist * j, 0, dist * i), Quaternion.identity);
                         num++;
                         
                         if (dungeon.settings.DelayMode != GenerationSettings.DelayModeEnum.Instant) yield return Wait();

@@ -14,11 +14,11 @@ namespace Inventory
         [SerializeField]
         private ItemData itemData;
 
-        public Item GiveItem()
+        public void GiveItem()
         {
             Item item = itemData.CreateItem();
             onGetItem?.Invoke(item);
-            return item;
+            Debug.Log("gave item " + item.ItemName);
         }
     }
 }

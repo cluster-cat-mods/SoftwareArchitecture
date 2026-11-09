@@ -20,8 +20,9 @@ namespace PlayerInteraction
                 Ray mouseRay = Camera.main.ScreenPointToRay( Input.mousePosition ); 
                 if (Physics.Raycast(mouseRay, out RaycastHit hitInfo )) 
                 {
-                    if (hitInfo.collider.gameObject.GetType() == typeof(ClickEvent))
+                    if (hitInfo.collider.gameObject.CompareTag("Clickable"))
                     {
+                        Debug.Log("Clicked " + hitInfo.collider.gameObject.name);
                         onClickSuccessful.Invoke();
                         ClickEvent clickEvent = hitInfo.collider.GetComponent<ClickEvent>();
                         clickEvent.OnClick.Invoke();

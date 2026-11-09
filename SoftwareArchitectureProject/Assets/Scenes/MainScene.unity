@@ -302,8 +302,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ListViewInventoryPresenter, Assembly-CSharp
+      - m_Target: {fileID: 2107402251}
+        m_TargetAssemblyTypeName: Inventory.ListViewInventoryPresenter, Assembly-CSharp
         m_MethodName: RefreshInventoryWithNextSorting
         m_Mode: 1
         m_Arguments:
@@ -945,6 +945,30 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1194855155}
+          m_TargetAssemblyTypeName: UI.UIManager, Assembly-CSharp
+          m_MethodName: ToggleActive
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2107402249}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1194855155}
+          m_TargetAssemblyTypeName: UI.UIManager, Assembly-CSharp
+          m_MethodName: ToggleActive
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 444697181}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - keyCode: 27
     onKeyPressed:
       m_PersistentCalls:
@@ -952,6 +976,30 @@ MonoBehaviour:
         - m_Target: {fileID: 1952721637}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2107402249}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 444697181}
+          m_TargetAssemblyTypeName: PlayerInteraction.MouseClickController, Assembly-CSharp
+          m_MethodName: set_enabled
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1343,9 +1391,9 @@ RectTransform:
   m_Father: {fileID: 1132597018}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 20}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &561965423
 MonoBehaviour:
@@ -1467,7 +1515,7 @@ RectTransform:
   m_Father: {fileID: 548359392}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1791,9 +1839,9 @@ RectTransform:
   m_Father: {fileID: 1132597018}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: -17}
+  m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &879376603
 MonoBehaviour:
@@ -1839,7 +1887,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 620834055}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999408
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2309,6 +2357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1152889196}
+  - component: {fileID: 1152889197}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -2332,9 +2381,35 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00008404261}
+  m_AnchoredPosition: {x: 0, y: 0.0068456065}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &1152889197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152889195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 1
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1186243259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2538,9 +2613,9 @@ RectTransform:
   m_Father: {fileID: 1132597018}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: -17}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1411641383
 MonoBehaviour:
@@ -2763,7 +2838,7 @@ RectTransform:
   m_Father: {fileID: 2070776684}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3199,7 +3274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa0a6c4120bba84dad86efccc6f8be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryModel
-  itemDatas: []
+  itemDatas:
+  - {fileID: 11400000, guid: 40544f4c767608846963bc9e216ead1a, type: 2}
   items: []
   strategyIndex: 0
   references:
@@ -3303,8 +3379,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ListViewInventoryPresenter, Assembly-CSharp
+      - m_Target: {fileID: 2107402251}
+        m_TargetAssemblyTypeName: Inventory.ListViewInventoryPresenter, Assembly-CSharp
         m_MethodName: RefreshInventoryWithPrevSorting
         m_Mode: 1
         m_Arguments:
